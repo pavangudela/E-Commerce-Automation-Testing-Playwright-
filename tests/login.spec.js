@@ -1,8 +1,8 @@
 import { test, expect } from '@playwright/test';
+import { LoginPage } from '../pages/LoginPage';
 test('login test', async ({ page }) => {
-  await page.goto('http://localhost:5173/login');
-  await page.locator( 'input[type= "mail"]').fill('kalyan@90');
-  await page.locator( 'input[type = "password"]').fill('kalyan@90');
-  await page.locator('input[type = "submit"]').click();
-  await expect(page).toHaveURL(/localhost:5173/);
+const loginPage =new LoginPage(page);
+  await page.goto('/login');
+  await loginPage.login("kalyan@90","kalyan@90");
+   await expect(page).toHaveURL(/localhost:5173/);
 });
